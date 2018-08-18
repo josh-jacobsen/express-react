@@ -3,11 +3,10 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
-  state = {passwords: []}
-
-  componentDidMount(){
-    this.getPasswords();
-  }
+  state = {
+    passwords: [],
+    menuItems: [],
+    }
 
   getPasswords = () => {
     // Get the passwords and store them in state
@@ -16,8 +15,16 @@ class App extends Component {
       .then(res => res.json())
       .then(passwords => this.setState({ passwords }));
   }
+  getMenuItems = () => {
+    // Get the passwords and store them in state
+    console.log("getting menuItems")
+    fetch('/api/menuItems')
+      .then(res => res.json())
+      .then(menuItems => this.setState({ menuItems }));
+  }
+
   render() {
-    const { passwords } = this.state;
+    const { passwords, menuItems } = this.state;
     return (
       <div className="App">
         <h1>Random number generator</h1>
@@ -29,7 +36,16 @@ class App extends Component {
         <button
           className="more"
           onClick={this.getPasswords}>
-          Get Again
+          Get Passwords
+        </button>
+        {menuItems.map((menuItem) => 
+                          <li>
+                          {menuItem}
+                        </li>)}
+        <button
+          className="more"
+          onClick={this.getMenuItems}>
+          Get Menu Items
         </button>
       </div>
       
