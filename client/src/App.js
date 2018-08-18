@@ -6,6 +6,7 @@ class App extends Component {
   state = {
     passwords: [],
     menuItems: [],
+    meshblock: []
     }
 
   getPasswords = () => {
@@ -23,8 +24,16 @@ class App extends Component {
       .then(menuItems => this.setState({ menuItems }));
   }
 
+  getMeshblocks = () => {
+    // Get the passwords and store them in state
+    console.log("getting meshblocks")
+    fetch('/api/meshblock')
+      .then(res => res.json())
+      .then(meshblock => this.setState({ meshblock }));
+  }
+
   render() {
-    const { passwords, menuItems } = this.state;
+    const { passwords, menuItems, meshblock } = this.state;
     return (
       <div className="App">
         <h1>Random number generator</h1>
@@ -46,6 +55,13 @@ class App extends Component {
           className="more"
           onClick={this.getMenuItems}>
           Get Menu Items
+        </button>
+
+        {meshblock}
+        <button
+          className="more"
+          onClick={this.getMeshblocks}>
+          Get Meshblock
         </button>
       </div>
       
