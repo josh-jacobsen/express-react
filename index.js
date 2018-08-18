@@ -22,6 +22,10 @@ app.get('/api/passwords', (req, res) => {
     res.json(passwords)
 });
 
+app.get('*', (req, res) => {
+    res.send("Welcome to the homepage");
+  });
+
 
 app.listen(4000, () => console.log('Example app listening on port 4000!'))
 
