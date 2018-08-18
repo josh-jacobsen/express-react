@@ -7,6 +7,7 @@ const path = require('path');
 
 app.use(express.static(path.join(__dirname, 'client/build')));
 
+const PORT = 5000 || process.env.PORT;
 // app.get('/', (req, res) => res.send("Hello there"))
 
 
@@ -27,6 +28,6 @@ app.get('*', (req, res) => {
   });
 
 
-app.listen(4000, () => console.log('Example app listening on port 4000!'))
+app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`))
 
 
